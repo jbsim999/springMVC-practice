@@ -1,6 +1,10 @@
 package com.codestates.member.controller;
 
-import com.codestates.member.*;
+import com.codestates.member.dto.MemberPatchDto;
+import com.codestates.member.dto.MemberPostDto;
+import com.codestates.member.dto.MemberResponseDto;
+import com.codestates.member.entity.Member;
+import com.codestates.member.service.MemberService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -10,6 +14,8 @@ import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import com.codestates.member.mapper.MemberMapper;
 
 @RestController
 @RequestMapping("/v5/members")

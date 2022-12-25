@@ -1,18 +1,17 @@
-package com.codestates.coffee;
+package com.codestates.coffee.dto;
 
 import lombok.Getter;
-import lombok.Setter;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
 @Getter
-@Setter
-public class CoffeePatchDto {
-    private long coffeeId;
+public class CoffeePostDto {
     @NotBlank
     private String korName;
+    @NotBlank
+    private String engName;
     @Min(10)
     @Max(50000)
     private int price;
