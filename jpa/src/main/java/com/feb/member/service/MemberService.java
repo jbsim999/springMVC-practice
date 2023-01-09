@@ -1,5 +1,7 @@
 package com.feb.member.service;
 
+import com.feb.exception.BusinessLogicException;
+import com.feb.exception.ExceptionCode;
 import com.feb.member.entity.Member;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +26,9 @@ public class MemberService {
     }
 
     public List <Member> findMembers(){
-        return null;
+        // TODO should business logic
+
+        throw new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND);
     }
 
     public void deleteMember(long memberId){

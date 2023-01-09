@@ -6,9 +6,12 @@ import com.feb.member.dto.MemberPostDto;
 import com.feb.member.dto.MemberResponseDto;
 import com.feb.member.entity.Member;
 import com.feb.member.service.MemberService;
+import com.feb.response.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
