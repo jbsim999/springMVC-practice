@@ -8,8 +8,7 @@ import org.springframework.data.annotation.Id;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
+//@AllArgsConstructor
 public class Coffee {
     @Id
     private long coffeeId;
@@ -17,4 +16,11 @@ public class Coffee {
     private String engName;
     private int price;
     private String coffeeCode;
+
+    public Coffee(long coffeeId, String korName, String engName, int price) {
+        this.coffeeId = coffeeId;
+        this.korName = korName;
+        this.engName = engName;
+        this.price = price;
+    }
 }

@@ -20,4 +20,9 @@ public class CoffeePostDto {
 
     @Range(min = 100,max = 50000)
     private int price;
+
+    @NotBlank
+    @Pattern(regexp = "^([A-Za-z]){3}",
+            message = "커피 코드는 3자리 영문이어야 합니다.")
+    private String coffeeCode;
 }

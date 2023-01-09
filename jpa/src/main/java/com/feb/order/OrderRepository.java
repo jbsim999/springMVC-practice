@@ -1,4 +1,7 @@
 package com.feb.order;
 
-public class OrderRepository {
+import org.springframework.data.repository.CrudRepository;
+
+public interface OrderRepository extends CrudRepository<Order, Long> {
+
 }
