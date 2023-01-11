@@ -11,6 +11,9 @@ import com.feb.coffee.dto.CoffeePostDto;
 import com.feb.coffee.entity.Coffee;
 import com.feb.coffee.mapper.CoffeeMapper;
 import com.feb.coffee.service.CoffeeService;
+import com.feb.member.entity.Member;
+import com.feb.response.MultiResponseDto;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -58,10 +61,13 @@ public class CoffeeController {
     }
 
     @GetMapping
-    public ResponseEntity getCoffees(){
-        List<Coffee> coffees = coffeeService.findCoffees();
-        List<CoffeeResponseDto> response = coffeeMapper.coffeesToCoffeeResponseDto(coffees);
-        return new ResponseEntity<>(response,HttpStatus.OK);
+    public ResponseEntity getCoffees(@Positive @RequestParam int page,
+                                     @Positive @RequestParam int size){
+        Page<Coffee> pageCoffees = coffeeService.findCoffees(page-1,size);
+        List<Coffee> coffees = pageCoffees.getContent();
+        return new ResponseEntity<>(
+                new MultiResponseDto<>(coffeeMapper.coffeesToCoffeeResponseDto(coffees)
+                ,pageCoffees),HttpStatus.OK);
     }
 
     @DeleteMapping("/{coffee-id}")

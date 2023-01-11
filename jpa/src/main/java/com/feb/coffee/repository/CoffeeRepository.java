@@ -3,10 +3,11 @@ package com.feb.coffee.repository;
 import com.feb.coffee.entity.Coffee;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.Optional;
 
-public interface CoffeeRepository extends CrudRepository<Coffee, Long> {
+public interface CoffeeRepository extends PagingAndSortingRepository<Coffee, Long> {
 
     Optional<Coffee> findByCoffeeCode(String coffeeCode);
 

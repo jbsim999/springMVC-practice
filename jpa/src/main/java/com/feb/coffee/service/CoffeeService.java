@@ -4,6 +4,9 @@ import com.feb.coffee.entity.Coffee;
 import com.feb.coffee.repository.CoffeeRepository;
 import com.feb.exception.BusinessLogicException;
 import com.feb.exception.ExceptionCode;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -44,8 +47,8 @@ public class CoffeeService {
         return findVerifiedCoffee(coffeeId);
     }
 
-    public List<Coffee> findCoffees(){
-        return (List<Coffee>) coffeeRepository.findAll();
+    public Page<Coffee> findCoffees(int page, int size){
+        return coffeeRepository.findAll(PageRequest.of(page,size, Sort.by("coffeeId").descending()));
     }
 
     public void deleteCoffee(long coffeeId){

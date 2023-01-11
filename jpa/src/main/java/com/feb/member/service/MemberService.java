@@ -4,6 +4,10 @@ import com.feb.exception.BusinessLogicException;
 import com.feb.exception.ExceptionCode;
 import com.feb.member.entity.Member;
 import com.feb.member.repository.MemberRepository;
+import com.feb.utils.CustomBeanUtils;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,10 +16,13 @@ import java.util.Optional;
 @Service
 public class MemberService {
 
-    private MemberRepository memberRepository;
+    private final MemberRepository memberRepository;
 
-    public MemberService(MemberRepository memberRepository) {
+    private final CustomBeanUtils<Member> beanUtils;
+
+    public MemberService(MemberRepository memberRepository, CustomBeanUtils<Member> beanUtils) {
         this.memberRepository = memberRepository;
+        this.beanUtils = beanUtils;
     }
 
     public Member createMember(Member member){
@@ -39,10 +46,10 @@ public class MemberService {
         return findVerifiedMember(memberId);
     }
 
-    public List <Member> findMembers(){
+    public Page<Member> findMembers(int page, int size){
         // TODO should business logic
 
-        return (List<Member>) memberRepository.findAll();
+        return memberRepository.findAll(PageRequest.of(page,size, Sort.by("memberId").descending()));
     }
 
     public void deleteMember(long memberId){
